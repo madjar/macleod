@@ -3,8 +3,11 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+import os
+PROJ_ROOT = os.path.dirname(os.path.realpath(__file__))
+
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Georges Dubus', 'georges.dubus@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -56,7 +59,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = 'static_root/'
+STATIC_ROOT = '%s/static_root/' % PROJ_ROOT
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -69,7 +72,7 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    'static/',
+    '%s/static/' % PROJ_ROOT,
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -84,7 +87,10 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '8n-fb1=xeco+v7zn3akpw8+#vwuejz%$g0ufjx&y#2^+e=+8b^'
+try:
+    from secret_settings import SECRET_KEY
+except ImportError:
+    SECRET_KEY = '8n-fb1=xeco+v7zn3akpw8+#vwuejz%$g0ufjx&y#2^+e=+8b^'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -105,7 +111,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'macleod.urls'
 
 TEMPLATE_DIRS = (
-    'templates/'
+    '%s/templates/' % PROJ_ROOT,
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -118,7 +124,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
