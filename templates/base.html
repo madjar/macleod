@@ -1,26 +1,32 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-    <link href="/static/css/common.css" type="text/css" media="screen" rel="stylesheet">
-    <link href="/static/css/sujets.css" type="text/css" media="screen" rel="stylesheet">
+    <title>MacLeod</title>
+    <meta charset="utf-8">
+    <link href="/static/css/bootstrap.css" type="text/css" media="screen" rel="stylesheet"/>
+    <link href="/static/css/tweaks.css" type="text/css" media="screen" rel="stylesheet"/>
 </head>
 
 <body>
-{% block header %}
-    <div id="header">
-        <a href="/"><h3>MacLeod</h3></a>
-	</div>
-{% endblock %}
-<div id="auth">{% if user.is_authenticated %}
-    Logged in as {{ user.username }}. <a href="{% url logout %}">Logout</a>.
-{% else %}
-    <a href="{% url socialauth_begin "github" %}">Login using Github.</a>
-{% endif %}</div>
-{% block content %}
-{% endblock %}
+<div class="topbar">
+    <div class="fill">
+        <div class="container">
+            <a class="brand" href="/">MacLeod</a>
+            <p class="pull-right">{% if user.is_authenticated %}
+                Logged in as <a>{{ user.username }}</a>. <small><a href="{% url logout %}">Logout</a>.</small>
+            {% else %}
+                <a href="{% url socialauth_begin "github" %}">Login using Github.</a>
+            {% endif %}</p>
+        </div>
+    </div>
+</div>
+<div id="auth"></div>
 
-    <pre id="roflcopter">
+<div class="container">{% block content %}
+{% endblock %}</div>
+<footer>
+<pre id="roflcopter">
  ROFL:ROFL:ROFL:ROFL
          _^___
  L    __/   []\
@@ -29,5 +35,6 @@ LOL===_        \
          I   I
         -------/
     </pre>
+</footer>
 </body>
 </html>
