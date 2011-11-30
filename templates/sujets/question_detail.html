@@ -10,7 +10,7 @@
     <td>{{option}}</td> 
     <td>{{option.voters.count}}{%csrf_token%}</td>
     <td>
-    	<form action="{%url vote%}" method=POST>
+    	<form action="{%url vote%}" method=POST>{% csrf_token %}
     		<input type="hidden" name="vote" id="id_vote" value="{{option.id}}" />
     		<input type="submit" value="bim"/>
 		</form>
@@ -18,5 +18,6 @@
 </tr>
 {% endfor %}
 </table>
+<div class="add_new"><a href="{% url option_new question.pk %}">Add new option</a></div>
 
 {% endblock %}

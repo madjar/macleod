@@ -7,5 +7,6 @@
 <tr><td><a href="{{ question.get_absolute_url }}">{{ question }}</a></td></tr>
 {% endfor %}
 </table>
+<div class="add_new"><a href="{% url question_new %}">Add new question</a></div>
 
 {% endblock %}
