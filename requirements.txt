@@ -1,3 +1,4 @@
 Django
 South
 django-debug-toolbar
+django-social-auth
