@@ -87,10 +87,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-try:
-    from secret_settings import SECRET_KEY
-except ImportError:
-    SECRET_KEY = '8n-fb1=xeco+v7zn3akpw8+#vwuejz%$g0ufjx&y#2^+e=+8b^'
+SECRET_KEY = '8n-fb1=xeco+v7zn3akpw8+#vwuejz%$g0ufjx&y#2^+e=+8b^'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -135,7 +132,8 @@ INSTALLED_APPS = (
 INTERNAL_IPS = ('127.0.0.1',)
 
 DEBUG_TOOLBAR_CONFIG = {'SHOW_TOOLBAR_CALLBACK': lambda x: True,
-    'HIDE_DJANGO_SQL': False}
+    'HIDE_DJANGO_SQL': False,
+    'INTERCEPT_REDIRECTS': False}
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -159,3 +157,8 @@ LOGGING = {
         },
     }
 }
+
+try:
+    from secret_settings import *
+except ImportError:
+    pass
